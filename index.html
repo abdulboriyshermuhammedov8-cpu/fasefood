@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="FASEFOOD MARKER — mazali burgerlar, lavashlar, pitsalar va ichimliklar. Menyuni ko‘ring va buyurtma bering.">
+  <meta name="keywords" content="fast food, burger, lavash, pizza, fasefood-marker, taom buyurtma">
+  <title>FASEFOOD MARKER — Mazali lahzalar!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" style="text-decoration:none;color:white">FASEFOOD <span>MARKER</span></a>
+    <nav class="navlinks"><a href="#home">Bosh sahifa</a><a href="#menu">Menyu</a><a href="#about">Biz haqimizda</a><a href="#contact">Aloqa</a></nav>
+    <div class="nav-actions"><button class="cart-btn" onclick="openCart()">🛒 Savat <b id="cartCount">0</b></button><button class="menu-btn" onclick="document.querySelector('#menu').scrollIntoView()">☰</button></div>
+  </div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">🔥 Har luqmada zavq</div>
+        <h1>Och qoldingmi?<br><span>Biz tayyormiz!</span></h1>
+        <p>Yangi tayyorlangan burgerlar, mazali lavashlar va sevimli ichimliklaringiz — barchasi bir joyda. O‘zingga yoqqanini tanla!</p>
+        <div class="hero-buttons"><a class="primary" href="#menu">Menyuni ko‘r <span>→</span></a><button class="secondary" onclick="openCart()">Savatni och 🛒</button></div>
+        <div class="stats"><div><strong>🍔 20+</strong><small>Taom turi</small></div><div><strong>⚡ Tez</strong><small>Tayyorlanadi</small></div><div><strong>❤️ 100%</strong><small>Kayfiyat</small></div></div>
+      </div>
+      <div class="hero-art"><div class="food-orb"><div class="food-emoji">🍔</div></div><div class="floating float-one">⭐ 4.9 <small>Mijozlar bahosi</small></div><div class="floating float-two">🔥 TOP TANLOV <small>Cheese Burger</small></div></div>
+    </div>
+  </section>
+  <section id="menu">
+    <div class="wrap">
+      <div class="section-head"><div><div class="kicker">Bizning menyu</div><h2>Sevimli taomingni tanla</h2></div><p>Hammasi yangi va mazali 😋</p></div>
+      <div class="categories" id="categories">
+        <button class="cat active" data-cat="Barchasi">🍽 Barchasi</button>
+        <button class="cat" data-cat="Burger">🍔 Burger</button>
+        <button class="cat" data-cat="Lavash">🌯 Lavash</button>
+        <button class="cat" data-cat="Pizza">🍕 Pizza</button>
+        <button class="cat" data-cat="Fri">🍟 Fri</button>
+        <button class="cat" data-cat="Ichimlik">🥤 Ichimlik</button>
+      </div>
+      <div class="toolbar"><input class="search" id="search" placeholder="🔎 Taom nomini qidirish..." aria-label="Taom qidirish"><select class="sort" id="sort"><option value="default">Saralash: odatiy</option><option value="low">Narx: arzondan</option><option value="high">Narx: qimmatdan</option></select></div>
+      <div class="products" id="products"></div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap"><div class="promo"><div><div class="kicker" style="color:#ffe2a1">Bugungi aksiya</div><h2>Do‘stlaring bilan<br>mazali tanaffus!</h2><p>3 ta burger ol — kayfiyatingni ko‘tar. Aksiya shartlarini operator bilan aniqlashtir.</p><a class="primary" href="#menu">Buyurtma ber →</a></div><div class="promo-art">🍔🍟</div></div></div>
+  </section>
+  <section id="about">
+    <div class="wrap"><div class="section-head"><div><div class="kicker">Nega FASEFOOD MARKER?</div><h2>Bizning ustunliklarimiz</h2></div></div>
+      <div class="features">
+        <div class="feature"><div class="ico">🥬</div><h3>Yangi mahsulotlar</h3><p>Taomlar yangi masalliqlardan tayyorlanadi.</p></div>
+        <div class="feature"><div class="ico">⚡</div><h3>Tez xizmat</h3><p>Buyurtmangizni imkon qadar tez tayyorlaymiz.</p></div>
+        <div class="feature"><div class="ico">💛</div><h3>Yaxshi kayfiyat</h3><p>Har bir buyurtmada mazali lahzalar!</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="contact"><div class="wrap footer-row"><div><div class="logo">FASEFOOD <span>MARKER</span></div><p>Har luqmada zavq. ❤️</p></div><div><strong>Aloqa</strong><p>Telefon: +998 90 000 00 00</p><p>Manzil: Manzilingizni shu yerga yozing</p></div><div><strong>Ish vaqti</strong><p>Har kuni: 10:00 – 23:00</p><p>© 2026 FASEFOOD MARKER</p></div></div></footer>
+
+<div class="modal-backdrop" id="cartBackdrop" onclick="if(event.target===this)closeCart()">
+  <aside class="cart-panel">
+    <div class="cart-head"><h2>🛒 Savatingiz</h2><button class="close" onclick="closeCart()">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot"><div class="total"><span>Jami:</span><span id="total">0 so‘m</span></div><button class="primary checkout" onclick="showCheckout()">Buyurtmani rasmiylashtirish →</button>
+      <div class="checkout-form" id="checkoutForm">
+        <input id="customerName" placeholder="Ismingiz" required>
+        <input id="customerPhone" placeholder="Telefon raqamingiz" type="tel" required>
+        <textarea id="customerAddress" placeholder="Yetkazib berish manzili"></textarea>
+        <button class="primary checkout" onclick="sendOrder()">Buyurtmani yuborish</button>
+        <p class="notice">Demo sayt: buyurtma WhatsApp orqali yuboriladi. Telefon raqamini o‘zingiznikiga almashtiring.</p>
+      </div>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast">Savatga qo‘shildi!</div>
+<script src="script.js" defer></script>
+</body>
+</html>
